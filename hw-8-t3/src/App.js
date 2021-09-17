@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
+class App extends Component {
+state = {
+  data: [
+    { name: 'Learn React', active: true },
+    { name: 'Drink tea', active: false }
+  ]
+};
+
+updateState(idx) {
+  const arr = this.state.data;
+
+  if (!arr[idx].active) {
+  // const result = [
+  //   ...arr.slice(0, idx),
+  //   { ...arr[idx], active: true },
+  //   ...arr.slice(idx + 1)
+  // ];
+
+  const result = arr.map((el, i) => {
+    return idx === i ? { ...el, active: true } : el;
+  })
+  this.setState({ data: result })
+}
+}
+
+render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div> {this.updateState(1)} 
+     {this.state.data[1].active ? this.state.data[1].name : 'Ничего не получилось'} 
     </div>
   );
+}
+  
 }
 
 export default App;
