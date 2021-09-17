@@ -27,8 +27,9 @@ updateState(idx) {
 }
 
 render() {
+  {this.updateState(1)}
   return (
-    <div> {this.updateState(1)} 
+    <div>  
      {this.state.data[1].active ? this.state.data[1].name : 'Ничего не получилось'} 
     </div>
   );
